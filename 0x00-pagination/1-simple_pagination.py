@@ -51,7 +51,7 @@ class Server:
         return:
             <list[list]> list data in list
         """
-        assert type(page) == int and type(page_size) == int
+        assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
 
         data = self.dataset()
