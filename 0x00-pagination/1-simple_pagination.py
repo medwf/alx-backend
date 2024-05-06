@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
+"""this module for task 1"""
 import csv
 import math
 from typing import List, Tuple
-
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
