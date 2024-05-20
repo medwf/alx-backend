@@ -2,7 +2,7 @@
 """this module for task 1"""
 import csv
 import math
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict, Union
 
 
 class Server:
@@ -58,7 +58,8 @@ class Server:
         start, end = Server.index_range(page, page_size)
         return [] if start > len(data) else data[start:end]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+    def get_hyper(self, page: int = 1, page_size: int = 10
+                  ) -> Dict[str, Union[int, List[List[str]], None]]:
         """
         get hyper using simple pagination.
 
