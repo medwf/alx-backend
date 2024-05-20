@@ -46,4 +46,4 @@ Use the provided data file `Popular_Baby_Names.csv` for your project.
 
 1. Write a function named index_range that takes two integer arguments page and page_size.
 2. Simple pagination.
-3. 2. Hypermedia pagination
+3. Hypermedia pagination
