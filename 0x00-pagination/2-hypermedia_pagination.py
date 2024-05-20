@@ -69,6 +69,9 @@ class Server:
         return:
             <dict{key, value}> : a dict represent a hypermedia.
         """
+        assert isinstance(page, int) and isinstance(page_size, int)
+        assert page > 0 and page_size > 0
+
         data = self.get_page(page, page_size)
         total_page = len(self.__dataset) / page_size
         return {
