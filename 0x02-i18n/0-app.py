@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def home():
+def home() -> str:
     """The route of flask app"""
     return render_template(
         "0-index.html",
@@ -19,4 +19,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
