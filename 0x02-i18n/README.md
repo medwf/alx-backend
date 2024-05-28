@@ -66,3 +66,17 @@ def my_function():
     It returns the appropriate locale string to be used for translations.
     """
 ```
+
+## Projects:
+
+0. Basic Flask app:
+    First you will setup a basic Flask app in 0-app.py. Create a single / route and an index.html template that simply outputs “Welcome to Holberton” as page title (<title>) and “Hello world” as header (<h1>).
+
+
+1. Basic Babel setup:
+    In order to configure available languages in our app.
+    you will create a Config class that has a LANGUAGES class attribute equal to ["en", "fr"].
+
+2. Get locale from request
+    Create a get_locale function with the babel.localeselector decorator.
+    Use request.accept_languages to determine the best match with our supported languages.
