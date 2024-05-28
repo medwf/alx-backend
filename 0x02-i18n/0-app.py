@@ -6,9 +6,9 @@ setup a basic Flask app
 from flask import Flask, render_template
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
-
-@app.route("/", strict_slashes=False)
+@app.route("/")
 def home() -> str:
     """The route of flask app"""
     return render_template(
