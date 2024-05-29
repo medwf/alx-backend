@@ -31,23 +31,17 @@ users = {
 def get_locale() -> str:
     """Retrieves the locale for a web page.
     """
-    try:
-        locale = g.user.get('locale', '')
-    except AttributeError:
-        locale = ''
-    if locale in app.config['LANGUAGES']:
+    locale = request.args.get('locale', '')
+    if locale in app.config["LANGUAGES"]:
         return locale
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 def get_user() -> Union[Dict, None]:
     """methods that return user dict"""
-    try:
-        userId = int(request.args.get('login_as', '0'))
-    except TypeError:
-        return None
-    if userId in users:
-        return users[userId]
+    login_id = request.args.get('login_as')
+    if login_id:
+        return users.get(int(login_id))
     return None
 
 
