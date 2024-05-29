@@ -3,6 +3,7 @@
 """
 from flask_babel import Babel, _
 from flask import Flask, render_template, request, g
+from typing import Union, Dict
 
 
 class Config:
@@ -18,6 +19,13 @@ app.config.from_object(Config)
 app.url_map.strict_slashes = False
 babel = Babel(app)
 
+users = {
+    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+}
+
 
 @babel.localeselector
 def get_locale() -> str:
@@ -32,14 +40,8 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
-def get_user():
+def get_user() -> Union[Dict, None]:
     """methods that return user dict"""
-    users = {
-        1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
-        2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-        3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
-        4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
-    }
     try:
         userId = int(request.args.get('login_as', '0'))
     except TypeError:
@@ -50,7 +52,7 @@ def get_user():
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     """this function set user to global on g.user"""
     g.user = get_user()
 
@@ -59,14 +61,7 @@ def before_request():
 def get_index() -> str:
     """The home/index page.
     """
-    try:
-        username = g.user.get('name', None)
-        print(username)
-    except AttributeError:
-        username = None
-    login = _('logged_in_as') % {'username': username} if username else _(
-        'not_logged_in')
-    return render_template('5-index.html', login=login)
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':
