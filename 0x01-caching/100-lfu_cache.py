@@ -15,6 +15,7 @@ class LFUCache(BaseCaching):
     def __init__(self):
         super().__init__()
         self.cache_data = OrderedDict()
+        self.freq_data = {}
 
     def put(self, key, item):
         """
@@ -41,9 +42,9 @@ class LFUCache(BaseCaching):
 
         return: item or None if not exist
         """
-        value = None
-        if key:
-            value = self.cache_data.get(key, None)
-            if value:
-                self.cache_data.move_to_end(key)
+        value = self.cache_data.get(key, None)
+        if key and value:
+
+            # should not move everyone to end.
+            self.cache_data.move_to_end(key)
         return value
