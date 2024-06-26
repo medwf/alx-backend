@@ -17,3 +17,5 @@ How to the build a basic Express app interacting with a Redis server and queue
 
 task 0 : connect to redis using createClient() on connect and error
 task 1 : read from redis
+...
+task 6: create Job with kue
